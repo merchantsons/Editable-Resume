@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Resume By Merchantsons</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+          <center><img src="logo.png" alt="logo" width="100"></center>
+           <div class="leftmargin">Roll # : 00037391</div>
+           <div class="tophead">Editable Resume Build By Merchantsons</div>
+           
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName">
+        </div>
+        <div class="form-group">
+            <label for="middleName">Middle Name:</label>
+            <input type="text" id="middleName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone">
+        </div>
+        <div class="form-group">
+            <label for="profilePicture">Profile Picture:</label>
+            <input type="file" id="profilePicture" accept="image/*">
+            <img id="profilePicturePreview" src="" alt="Profile Picture Preview" width="80" style="display: none;">
+        </div>
+        <div class="form-group">
+            <label for="skills">Skills:</label>
+            <textarea id="skills" placeholder="Enter your skills, separated by commas"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="experience">Work Experience:</label>
+            <textarea id="experience" placeholder="Describe your work experience"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="education">Education:</label>
+            <textarea id="education" placeholder="Describe your education background"></textarea>            
+        </div>
+        <button id="save" class="button">Save Resume</button>
+        <button id="download" class="button">Download as PDF</button>
+        <button id="edit" class="button">Re-Edit</button>
+        <div class="share-link" id="shareLinkSection">
+            <label>Shareable Unique Link:</label>
+            <input type="text" id="shareLink" readonly>
+            <button id="copyLink" class="button">Copy Link</button>
+        </div>
+        <div class="resume-section" id="resume">
+            <h2>Personal Information</h2>
+            <img id="profilePictureDisplay" src="Icon.jpg" alt="Profile Picture" width="100">
+            <p id="fullName" class="editable">Full Name: </p>
+            <p id="emailDisplay" class="editable">Email: </p>
+            <p id="phoneDisplay" class="editable">Phone Number: </p>            
+            <h2>Skills</h2>
+            <p id="skillsDisplay" class="editable">Skills: </p>
+            <h2>Work Experience</h2>
+            <p id="experienceDisplay" class="editable">Work Experience: </p>
+            <h2>Education</h2>
+            <p id="educationDisplay" class="editable">Education: </p>
+        </div>
+    </div>    
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+    <script src="resume.js"></script>
+</body>
+</html>
