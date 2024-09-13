@@ -1,114 +1,134 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var _this = this;
 document.addEventListener('DOMContentLoaded', function () {
-    var saveButton = document.getElementById('save');
-    var downloadButton = document.getElementById('download');
-    var editButton = document.getElementById('edit');
-    var copyLinkButton = document.getElementById('copyLink');
-    var firstNameInput = document.getElementById('firstName');
-    var middleNameInput = document.getElementById('middleName');
-    var lastNameInput = document.getElementById('lastName');
-    var emailInput = document.getElementById('email');
-    var phoneInput = document.getElementById('phone');
-    var profilePictureInput = document.getElementById('profilePicture');
-    var skillsInput = document.getElementById('skills');
-    var experienceInput = document.getElementById('experience');
-    var educationInput = document.getElementById('education');
-    var fullNameDisplay = document.getElementById('fullName');
-    var emailDisplay = document.getElementById('emailDisplay');
-    var phoneDisplay = document.getElementById('phoneDisplay');
-    var skillsDisplay = document.getElementById('skillsDisplay');
-    var experienceDisplay = document.getElementById('experienceDisplay');
-    var educationDisplay = document.getElementById('educationDisplay');
-    var profilePictureDisplay = document.getElementById('profilePictureDisplay');
-    var profilePicturePreview = document.getElementById('profilePicturePreview');
-    var shareLinkInput = document.getElementById('shareLink');
-    var uniqueId = '';
-    // Generate a unique ID for the resume
-    function generateUniqueId() {
-        return 'resume-' + Math.random().toString(36).substr(2, 9);
-    }
-    // Update the resume display with the current input values
-    function updateResume() {
-        var fullName = "".concat(firstNameInput.value, " ").concat(middleNameInput.value, " ").concat(lastNameInput.value);
-        fullNameDisplay.textContent = "Full Name: ".concat(fullName);
-        emailDisplay.textContent = "Email: ".concat(emailInput.value);
-        phoneDisplay.textContent = "Phone Number: ".concat(phoneInput.value);
-        skillsDisplay.textContent = "Skills: ".concat(skillsInput.value);
-        experienceDisplay.textContent = "Work Experience: ".concat(experienceInput.value);
-        educationDisplay.textContent = "Education: ".concat(educationInput.value);
-        if (profilePictureInput.files && profilePictureInput.files.length > 0) {
-            var file = profilePictureInput.files[0];
+    // Function to handle file input change and display the selected image
+    function handleFileSelect(event) {
+        var input = event.target;
+        var file = input.files ? input.files[0] : null;
+        var img = document.getElementById('profile-pic-preview');
+        if (file) {
             var reader = new FileReader();
-            reader.onload = function (event) {
-                var _a, _b;
-                profilePicturePreview.src = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result;
-                profilePicturePreview.style.display = 'block';
-                profilePictureDisplay.src = (_b = event.target) === null || _b === void 0 ? void 0 : _b.result;
+            reader.onload = function (e) {
+                if (e.target) {
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
             };
             reader.readAsDataURL(file);
         }
     }
-    // Save the resume and generate a unique URL
-    saveButton.addEventListener('click', function () {
-        if (!uniqueId) {
-            uniqueId = generateUniqueId();
-        }
-        updateResume();
-        var baseURL = window.location.origin;
-        shareLinkInput.value = "".concat(baseURL, "/").concat(uniqueId);
-    });
-    // Download the resume as PDF
-    downloadButton.addEventListener('click', function () { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            return [2 /*return*/];
+    // Attach the event listener to the file input
+    var profilePicInput = document.getElementById('profile-pic');
+    profilePicInput.addEventListener('change', handleFileSelect);
+    // Edit Button Functionality
+    var editButton = document.getElementById('edit-btn');
+    if (editButton) {
+        editButton.addEventListener('click', function () {
+            var inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(function (input) {
+                var element = input;
+                element.removeAttribute('readonly');
+                element.style.backgroundColor = ''; // Optionally reset background color
+            });
+            // Focus on the First Name input
+            var firstNameInput = document.getElementById('first-name');
+            if (firstNameInput) {
+                firstNameInput.focus();
+            }
         });
-    }); });
-    // Re-edit button functionality
-    editButton.addEventListener('click', function () {
-        firstNameInput.focus();
-    });
-    // Copy the shareable link to the clipboard
-    copyLinkButton.addEventListener('click', function () {
-        shareLinkInput.select();
-        document.execCommand('copy');
-        alert('Shareable link copied to clipboard!');
-    });
-    // Update the resume display initially
-    updateResume();
+    }
+    // Save Button Functionality
+    var saveButton = document.getElementById('save-btn');
+    if (saveButton) {
+        saveButton.addEventListener('click', function () {
+            var data = {
+                profilepic: document.getElementById('profile-pic').value,
+                firstName: document.getElementById('first-name').value,
+                middleName: document.getElementById('middle-name').value,
+                lastName: document.getElementById('last-name').value,
+                email: document.getElementById('email').value,
+                dob: document.getElementById('dob').value,
+                address: document.getElementById('address').value,
+                passport: document.getElementById('passport').value,
+                drivingLicense: document.getElementById('driving-license').value,
+                skills: document.getElementById('skills').value,
+                experience: document.getElementById('experience').value,
+                education: document.getElementById('education').value
+            };
+            var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            alert('File Saved. You can download it now.');
+            // Uncomment the following lines if you want to trigger a download:
+            // a.href = url;
+            // a.download = 'resume.json';
+            // a.click();
+            // URL.revokeObjectURL(url);
+        });
+    }
+    // Download Button Functionality (as JSON)
+    var downloadButton = document.getElementById('download-btn');
+    if (downloadButton) {
+        downloadButton.addEventListener('click', function () {
+            var data = {
+                profilepic: document.getElementById('profile-pic').value,
+                firstName: document.getElementById('first-name').value,
+                middleName: document.getElementById('middle-name').value,
+                lastName: document.getElementById('last-name').value,
+                email: document.getElementById('email').value,
+                dob: document.getElementById('dob').value,
+                address: document.getElementById('address').value,
+                passport: document.getElementById('passport').value,
+                drivingLicense: document.getElementById('driving-license').value,
+                skills: document.getElementById('skills').value,
+                experience: document.getElementById('experience').value,
+                education: document.getElementById('education').value
+            };
+            var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'resume.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+    }
+    // Print Button Functionality
+    var printButton = document.getElementById('print-btn');
+    if (printButton) {
+        printButton.addEventListener('click', function () {
+            window.print();
+        });
+    }
+    // Function to gather form data
+    function gatherFormData() {
+        var profilePicInput = document.getElementById('profile-pic');
+        var profilePicFile = profilePicInput.files && profilePicInput.files.length > 0
+            ? URL.createObjectURL(profilePicInput.files[0])
+            : '';
+        return {
+            profilepic: profilePicFile,
+            firstName: document.getElementById('first-name').value,
+            middleName: document.getElementById('middle-name').value,
+            lastName: document.getElementById('last-name').value,
+            email: document.getElementById('email').value,
+            dob: document.getElementById('dob').value,
+            address: document.getElementById('address').value,
+            passport: document.getElementById('passport').value,
+            drivingLicense: document.getElementById('driving-license').value,
+            skills: document.getElementById('skills').value,
+            experience: document.getElementById('experience').value,
+            education: document.getElementById('education').value
+        };
+    }
+    // Open Tab Button Functionality
+    var openTabButton = document.getElementById('open-tab-btn');
+    if (openTabButton) {
+        openTabButton.addEventListener('click', function () {
+            var formData = gatherFormData();
+            var newWindow = window.open('', '_blank');
+            if (newWindow) {
+                newWindow.document.write("\n                    <html>\n                    <head>\n                        <title>Resume</title>\n                        <style>\n                            body {\n                                font-family: Arial, sans-serif;\n                                background-color: #c9ebce;\n                                color: #000;\n                            }\n                            .container {\n                                width: 80vw;\n                                padding: 5vw;\n                                background: #dffae3;\n                                margin: auto;\n                                border-radius: 8px;\n                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n                            }\n                            .header {\n                                text-align: left;\n                                margin-bottom: 20px;\n                            }\n                            .profile img {\n                                width: 8vw;\n                                height: 11vw;\n                            }\n                            .profile h1 {\n                                font-size: 28px;\n                                color: #333;\n                                margin: 10px 0 0;\n                            }\n                            .section {\n                                margin-bottom: 20px;\n                                padding: 10px;\n                                border-radius: 5px;\n                                background: #f9f9f9;\n                            }\n                            .section h2 {\n                                background-color: #a1c1a6;\n                                color: #fff;\n                                padding: 10px;\n                                border-radius: 5px;\n                                font-size: 20px;\n                            }\n                            .section div {\n                                margin-bottom: 10px;\n                            }\n                            .section label {\n                                display: block;\n                                font-weight: bold;\n                            }\n                            .section p {\n                                margin: 8px 0;\n                                padding: 8px;\n                                border-radius: 4px;\n                                border: 1px solid #ddd;\n                                box-sizing: border-box;\n                                background: #fff;\n                            }\n                        </style>\n                    </head>\n                    <body>\n                        <div class=\"container\">\n                            <header class=\"header\">\n                                <div class=\"profile\">\n                                    <div class=\"profile-pic\">\n                                        ".concat(formData.profilepic ? "<img src=\"".concat(formData.profilepic, "\" alt=\"Profile Picture\">") : '<p>No profile picture available</p>', "\n                                    </div>\n                                    <h1>").concat(formData.firstName, " ").concat(formData.middleName ? formData.middleName + ' ' : '').concat(formData.lastName, "</h1>\n                                </div>\n                            </header>\n                            <main class=\"main-content\">\n                                <div class=\"section\">\n                                    <h2>Personal Information</h2>\n                                    <div>\n                                        <label>Email:</label>\n                                        <p>").concat(formData.email, "</p>\n                                    </div>\n                                    <div>\n                                        <label>Date of Birth:</label>\n                                        <p>").concat(formData.dob, "</p>\n                                    </div>\n                                    <div>\n                                        <label>Address:</label>\n                                        <p>").concat(formData.address, "</p>\n                                    </div>\n                                    <div>\n                                        <label>Passport:</label>\n                                        <p>").concat(formData.passport, "</p>\n                                    </div>\n                                    <div>\n                                        <label>Driving License:</label>\n                                        <p>").concat(formData.drivingLicense, "</p>\n                                    </div>\n                                </div>\n                                <div class=\"section\">\n                                    <h2>Skills</h2>\n                                    <p>").concat(formData.skills, "</p>\n                                </div>\n                                <div class=\"section\">\n                                    <h2>Experience</h2>\n                                    <p>").concat(formData.experience, "</p>\n                                </div>\n                                <div class=\"section\">\n                                    <h2>Education</h2>\n                                    <p>").concat(formData.education, "</p>\n                                </div>\n                            </main>\n                        </div>\n                    </body>\n                    </html>\n                "));
+                newWindow.document.close();
+            }
+        });
+    }
 });

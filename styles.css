@@ -1,106 +1,161 @@
-
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #e8f5e9;
-    color: #333;
+    background-color: #7cbbc5;
     margin: 0;
     padding: 0;
+    color: #333;
 }
+
 .container {
+    width: 80%;
     max-width: 1000px;
     margin: auto;
+    background: #fff;
     padding: 20px;
-    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-h1 {
-    text-align: center;
-    color: #388e3c;
-}
-.form-group {
-    margin-bottom: 15px;
+
+/* Header Styles */
+.header {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    color:rgb(4, 70, 4);
 }
-.form-group label {
-    font-weight: bold;
-    color: #388e3c;
+.logo{
+
+    width: 8vmax;
+    height: 11vmax;
+    text-align: left;
 }
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"],
-.form-group textarea {
-    width: 100%;
+
+.tophead{
+    font-size: 1.5vmax;
+    font-family: 'poppins';
+    color: #ffb412;
+    font-weight: 700;
+    margin: 10px 0 0;
+}
+
+.roll{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    color:rgb(4, 70, 4);
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+ 
+    width: 8vmax;
+    height: 11vmax;
+    
+}
+
+.profile h1 {
+    font-size: 1.5vmax;
+    font-family: 'poppins';
+    color: #ffb412;
+    margin: 10px 0 0;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 0px;
+    padding: 2px;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.section h2 {
+    background-color: #35aabd;
+    color: #fff;
     padding: 10px;
-    border: 1px solid #b2dfdb;
+    border-radius: 5px;
+    font-size: 20px;
+    /* margin: 0; */
+}
+
+.section div {
+    margin-bottom: 10px;
+}
+
+.section label {
+    display: block;
+    font-weight: bold;
+}
+
+.section input,
+.section textarea {
+    width: 100%;
+    padding: 8px;
     border-radius: 4px;
+    border: 1px solid #ddd;
     box-sizing: border-box;
 }
-.form-group textarea {
+
+.section textarea {
+    height: 100px;
     resize: vertical;
-    min-height: 60px;
 }
-.form-group input[type="file"] {
-    padding: 0;
+
+/* Footer Styles */
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
-.resume-section {
-    margin-top: 20px;
-}
-.resume-section h2 {
-    margin-top: 0;
-    color: #388e3c;
-}
-.resume-section p {
-    margin: 5px 0;
-}
-.resume-section img {
-    max-width: 150px;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-.button {
-    background-color: #388e3c;
-    color: white;
+
+.footer button {
+    background-color: #35aabd;
+    color: #fff;
     border: none;
-    padding: 12px 20px;
+    padding: 1vmin 4vmin;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    margin: 5px;
+    font-size: 2vmin;
 }
-.button:hover {
-    background-color: #2c6c40;
+
+.footer button:hover {
+    background-color: #da9502;
 }
-.button:disabled {
-    background-color: #b2dfdb;
+
+.footer button:disabled {
+    background-color: #ddd;
     cursor: not-allowed;
 }
-.editable {
-    border: 1px solid #b2dfdb;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    min-height: 40px;
-    background-color: #e8f5e9;
-}
-.share-link {
-    margin-top: 10px;
-}
 
-.tophead {
-  font-family: "poppins";
-  font-size: 2vmax;
-  font-weight: 800;
-  color: #034718;
-  text-align: center;
-  margin-bottom: 2vmax;
-  text-decoration: underline;
-}
-
-.leftmargin {
-    text-align: center;
-    color: rgb(136, 4, 4);
-    font-weight: 700;
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .container, .container * {
+        visibility: visible;
+    }
+    .container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 210mm; /* A4 width */
+        height: 297mm; /* A4 height */
+        padding: 20mm;
+        background: #fff;
+        color: #000;
+    }
 }
